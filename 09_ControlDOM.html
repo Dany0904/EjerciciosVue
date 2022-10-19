@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rest</title>
+</head>
+<body>
+    <h2>v-html</h2>
+    <div id="vHTML">
+        <div v-html="titulo">titulo</div>
+        <div v-html="link">link</div>
+    </div>
+    <hr>
+
+    <h2>v-for</h2>
+    <div id="vFor">
+        <li v-for="data in Object">{{data}}</li>
+    </div>
+    <hr>
+
+    <h2>Recorrer dos array</h2>
+    <div id="ej2">
+        <li v-for="(framework, i) in frameworks">{{framework}} {{creador[i]}}</li>
+        <hr>
+        <h2>Recorrer un objeto</h2>
+        <li v-for="(name, framework) in datos">{{framework}} {{name}}</li>
+    </div>
+    <hr>
+
+    <h2>v-show</h2>
+    <div id="vShow">
+        <input type="number" v-model="nota">
+        <p v-show="resultado()">Aprobaste</p>
+        <p v-show="!resultado()">Reprobaste</p>
+    </div>
+    <hr>
+
+    <h2>Vif</h2>
+    <div id="vIf">
+        <input type="text" v-model="login">
+        <p>{{contraseña}}</p>
+        <div v-if="isLogin">Estas Log</div>
+        <div v-else="isLogin">No estas Log</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    
+    <script>
+        const vHTML = new Vue({
+            el: "#vHTML",
+            data: {
+                link: "<a href='www.google.com'>google</a>",
+                titulo: "<h3>Google</h3>"
+            }
+        })
+        const vFor = new Vue({
+            el: '#vFor',
+            data: {
+                Object: {
+                    nombre: 'daniel',
+                    apellido: 'ortiz',
+                    edad: 21
+                }
+            }
+        })
+        const ej2 = new Vue({
+            el: '#ej2',
+            data: {
+                frameworks: ['angular', 'vue', 'react', 'ember'],
+                creador: ['misko', 'evan', 'jordan', 'yehuda'],
+                datos: {
+                    angular: 'misko',
+                    vue: 'evan',
+                    react: 'jordan',
+                    ember: 'yehuda'
+                }
+            }
+        })
+        const vShow =  new Vue({
+            el: '#vShow',
+            data:{
+                nota: 0
+            },
+            methods:{
+                resultado(){
+                    if(this.nota >= 3.0 & this.nota <= 5.0){
+                        return true
+                    }else{
+                        return false
+                    }
+                }
+            }
+        })
+        const vIf = new Vue({
+            el: '#vIf',
+            data: {
+                contraseña: '123456a',
+                login: ''
+            },
+            computed: {
+                isLogin(){
+                    if(this.contraseña == this.login){
+                        return true
+                    }
+                    return false
+                }
+            }
+        })
+    </script>
+
+    <style>
+        hr{
+            color: black;
+            border: 3px solid black;
+        }
+    </style>
+</body>
+</html>

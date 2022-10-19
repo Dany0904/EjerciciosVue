@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hola mundo</title>
+</head>
+<body>
+    <!-- Esto es codigo en Vue version 2 -->
+    <div id="app">
+        {{ mensaje }}
+        <!-- eventos -->
+
+        <!-- evento onclick. llamamos a la funcion creada -->
+        <button v-on:click="voltearLetras">Puchame</button> 
+    </div>
+    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:'#app', //Hacemos referencia al componente con su id
+            data: { //Enviamos mensaje
+                mensaje: "Hola mundo" 
+            },
+            methods: {
+                voltearLetras: function(){
+                    //Definimos la funcion y para acceder al mensaje ocupamos this
+                    this.mensaje = this.mensaje.split('').reverse().join('');
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio1</title>
+</head>
+<body>
+    <div id="componenteUno">
+        <p>Componente 1</p>
+        {{nombre}}
+        <input type="text" v-model="nombre">
+    </div>
+    <div id="componenteDos">
+        <p>Componente 2</p>
+        {{text}} 
+        <input type="text" v-model="text">
+        <button v-on:click="montar()">Montar instancia</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- Aunque en el componente uno, no esta conectado a su componente, se carga el dos y lo podemos montar -->
+    <!-- Se puede montar una instancia que ya este generada a otro Componente -->
+    <script>
+        const uno = new Vue({
+            data: {
+                titulo: 'Cientifico de datos',
+                nombre: 'Daniel Ortiz'
+            }
+        })
+        const dos = new Vue({
+            el: '#componenteDos',
+            data: {
+                text:  uno.nombre
+            },
+            methods:{
+                montar(){
+                    uno.$mount('#componenteUno')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hola mundo V3</title>
+</head>
+<body>
+    <!-- Esto es codigo en Vue version 3 -->
+    <div id="container">
+        Contador : {{count}}
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const Contador = {
+            data(){
+                return{
+                    //Definimos un dato, una variable
+                    count : 0
+                }
+            },
+            mounted(){
+                setInterval(()=>{
+                    this.count++
+                }, 500)
+            }
+        }
+        Vue.createApp(Contador).mount('#container')
+    </script>
+</body>
+</html>

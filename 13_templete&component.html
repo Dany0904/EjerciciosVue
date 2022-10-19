@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio1</title>
+</head>
+<body>
+    <div id="componenteUno">
+        <p>Componente 1</p>
+        {{nombre}}
+        <input type="text" v-model="nombre">
+    </div>
+    <div id="componenteDos">
+        <p>Componente 2</p>
+        {{text}} 
+        <input type="text" v-model="text">
+        <button v-on:click="montar()">Montar instancia</button>
+        <hr>
+        <!-- Se puede reutilizar las veces necesarias -->
+        <contador></contador>
+        <contador></contador>
+        <contador></contador>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <script>
+        Vue.component('contador',{
+            template: "<button v-on:click='numero++'> Soy un contador {{numero}} </button>",
+            data(){
+                return{
+                    numero: 0
+                }
+            }
+        })
+        const uno = new Vue({
+            data: {
+                titulo: 'Cientifico de datos',
+                nombre: 'Daniel Ortiz'
+            }
+        })
+        const dos = new Vue({
+            el: '#componenteDos',
+            data: {
+                text:  uno.nombre
+            },
+            methods:{
+                montar(){
+                    uno.$mount('#componenteUno')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

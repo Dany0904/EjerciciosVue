@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio1</title>
+</head>
+<body>
+    <div id="app">
+        {{titulo}}
+        <input type="text" v-model="nombre"> <br>
+        {{nombre}}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        const uno = new Vue({
+            el: '#app',
+            data: {
+                titulo: 'Cientifico de datos',
+                nombre: 'Daniel Ortiz'
+            },
+            //beforeCreate: despues de inicializar la instancia, antes de que componente se cree
+            beforeCreate(){
+                alert('Antes de crear componente' + ' ' + this.nombre)
+            },
+            //created: ejecuta cuando instancia, evento, propiedad, etc
+            created(){
+                alert('Componente creado' + ' ' + this.nombre)
+            },
+            //beforeMount: se ejecuta justo antes de añadir DOM
+            beforeMount(){
+                alert('Antes de añadir al DOM' + ' ' + this.nombre)
+            },
+            //mounted: se ejecuta despues de añadir DOM
+            mounted(){
+                alert('Despues añadir al DOM' + ' ' + this.nombre)
+            },
+            //beforeUpdate: se ejecuta cuando el objeto data cambia, el DOM no
+            beforeUpdate(){
+                alert('data cambia pero no el DOM' + ' ' + this.nombre)
+            },
+            //updated: se ejecuta despues de que objeto data cambie, DOM lo muestra
+            updated(){
+                alert('data cambia en el DOM' + ' ' + this.nombre)
+            }
+            //beforeDestroy: se ejecuta justo antes de eliminar la instancia
+            //destroyed: se ejecuta cuando la instancia, directivas, etc se eliminan
+        })
+    </script>
+</body>
+</html>
